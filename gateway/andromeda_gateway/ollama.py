@@ -28,7 +28,7 @@ class OllamaAdapter:
 
     async def health(self) -> dict[str, Any]:
         try:
-            async with httpx.AsyncClient(timeout=5.0) as client:
+            async with httpx.AsyncClient(timeout=5.0, trust_env=False) as client:
                 response = await client.get(f"{self.base_url}/api/tags")
             if response.status_code >= 400:
                 return {"ok": False, "detail": f"Ollama returned HTTP {response.status_code}"}
@@ -48,7 +48,10 @@ class OllamaAdapter:
     async def generate(self, *, model: str, prompt: str) -> dict[str, Any]:
         body = {"model": model, "prompt": prompt, "stream": False}
         try:
-            async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
+            async with httpx.AsyncClient(
+                timeout=self.timeout_seconds,
+                trust_env=False,
+            ) as client:
                 response = await client.post(f"{self.base_url}/api/generate", json=body)
         except httpx.HTTPError as exc:
             raise OllamaError("Ollama request failed") from exc
