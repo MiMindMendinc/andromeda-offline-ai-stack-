@@ -39,6 +39,23 @@ def test_health_handles_malformed_json(monkeypatch: pytest.MonkeyPatch) -> None:
     assert result == {"ok": False, "detail": "Ollama returned invalid JSON"}
 
 
+def test_adapter_does_not_inherit_ambient_proxy_settings(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    observed: list[dict[str, object]] = []
+    fake = FakeClient(httpx.Response(200, json={"models": []}))
+
+    def build_client(**kwargs: object) -> FakeClient:
+        observed.append(kwargs)
+        return fake
+
+    monkeypatch.setattr(httpx, "AsyncClient", build_client)
+    result = asyncio.run(OllamaAdapter("http://127.0.0.1:11434", 5).health())
+
+    assert result == {"ok": True, "models": []}
+    assert observed == [{"timeout": 5.0, "trust_env": False}]
+
+
 def test_generate_sanitizes_transport_errors(monkeypatch: pytest.MonkeyPatch) -> None:
     request = httpx.Request("POST", "http://127.0.0.1:11434/api/generate")
     fake = FakeClient(error=httpx.ReadTimeout("private upstream detail", request=request))
