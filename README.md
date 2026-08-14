@@ -63,7 +63,38 @@ scripts/tool_search.py
 scripts/check_catalog.py
 scripts/build_offline_bundle.sh
 examples/guardian_stack/docker-compose.yml
+gateway/
 ```
+
+## Local gateway
+
+```bash
+cd gateway
+pip install -r requirements.txt
+cp config.example.yaml config.yaml
+python -m andromeda_gateway --config config.yaml
+```
+
+The gateway defaults to loopback, a single allowed model, bounded prompts, and
+bounded metadata-only event logging. Any non-loopback bind requires an explicit
+opt-in plus a 24+ character `ANDROMEDA_API_KEY`.
+
+Health check:
+
+```bash
+curl -s http://127.0.0.1:8000/health
+```
+
+## Build the transfer bundle
+
+```bash
+bash scripts/build_offline_bundle.sh
+sha256sum -c dist/andromeda-offline-bundle-*.tar.gz.sha256
+```
+
+The builder uses a strict source allowlist: local `.env` files, `config.yaml`,
+SQLite databases, caches, and virtual environments cannot enter the archive.
+Container images and model weights are downloaded separately before disconnecting.
 
 ## Use cases
 

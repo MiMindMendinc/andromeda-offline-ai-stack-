@@ -1,0 +1,779 @@
+{
+  "name": "Andromeda Tool Catalog",
+  "version": "0.1.0",
+  "description": "Curated tools for offline-first AI, local infrastructure, Raspberry Pi deployments, farm/home edge devices, private RAG, voice assistants, and secure self-hosting.",
+  "selection_rule": "A tool belongs in Andromeda when it helps build private, local, offline-capable AI systems. If it depends on cloud APIs by default, it must be clearly labeled as optional and non-default.",
+  "categories": [
+    {
+      "id": "foundation",
+      "name": "Foundation and discovery",
+      "tools": [
+        {
+          "name": "Awesome",
+          "url": "https://github.com/sindresorhus/awesome",
+          "summary": "Master index of curated developer lists.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["discovery", "lists"]
+        },
+        {
+          "name": "Awesome Selfhosted",
+          "url": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+          "summary": "Self-hosted software map.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["discovery", "selfhosted"]
+        },
+        {
+          "name": "Awesome Local LLM",
+          "url": "https://github.com/rafska/awesome-local-llm",
+          "summary": "Local LLM ecosystem map.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["discovery", "llm"]
+        },
+        {
+          "name": "Awesome Raspberry Pi",
+          "url": "https://github.com/thibmaek/awesome-raspberry-pi",
+          "summary": "Raspberry Pi projects and resources.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["discovery", "raspberry-pi"]
+        },
+        {
+          "name": "Awesome Privacy",
+          "url": "https://github.com/pluja/awesome-privacy",
+          "summary": "Privacy-respecting alternatives.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["discovery", "privacy"]
+        },
+        {
+          "name": "Awesome Security",
+          "url": "https://github.com/sbilly/awesome-security",
+          "summary": "Security tooling and resources.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["discovery", "security"]
+        },
+        {
+          "name": "Awesome Embedded Rust",
+          "url": "https://github.com/rust-embedded/awesome-embedded-rust",
+          "summary": "Embedded Rust tools.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["discovery", "embedded", "rust"]
+        }
+      ]
+    },
+    {
+      "id": "llm-runtimes",
+      "name": "Local LLM runtimes",
+      "tools": [
+        {
+          "name": "Ollama",
+          "url": "https://github.com/ollama/ollama",
+          "summary": "Simple local model runner and API.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["llm", "inference", "api"],
+          "recommended": true
+        },
+        {
+          "name": "llama.cpp",
+          "url": "https://github.com/ggml-org/llama.cpp",
+          "summary": "Efficient GGUF inference for CPU and low-resource devices.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["llm", "inference", "cpu", "edge"],
+          "recommended": true
+        },
+        {
+          "name": "LocalAI",
+          "url": "https://localai.io/",
+          "summary": "OpenAI-compatible local API server.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["llm", "api", "openai-compatible"]
+        },
+        {
+          "name": "GPT4All",
+          "url": "https://github.com/nomic-ai/gpt4all",
+          "summary": "Local desktop AI stack.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["llm", "desktop"]
+        },
+        {
+          "name": "Jan",
+          "url": "https://github.com/menloresearch/jan",
+          "summary": "Local AI desktop app.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["llm", "desktop"]
+        },
+        {
+          "name": "text-generation-webui",
+          "url": "https://github.com/oobabooga/text-generation-webui",
+          "summary": "Advanced local LLM web UI.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["llm", "ui"]
+        },
+        {
+          "name": "vLLM",
+          "url": "https://github.com/vllm-project/vllm",
+          "summary": "High-throughput GPU inference server.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["llm", "gpu", "server"]
+        },
+        {
+          "name": "MLX LM",
+          "url": "https://github.com/ml-explore/mlx-lm",
+          "summary": "Apple Silicon local LLM tooling.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["llm", "apple-silicon"]
+        },
+        {
+          "name": "Transformers",
+          "url": "https://github.com/huggingface/transformers",
+          "summary": "Model library for NLP, vision, and audio.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["llm", "library", "multimodal"]
+        },
+        {
+          "name": "KoboldCpp",
+          "url": "https://github.com/LostRuins/koboldcpp",
+          "summary": "Easy llama.cpp-based local inference.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["llm", "inference"]
+        }
+      ]
+    },
+    {
+      "id": "ai-uis",
+      "name": "Local AI UIs and private workspaces",
+      "tools": [
+        {
+          "name": "Open WebUI",
+          "url": "https://github.com/open-webui/open-webui",
+          "summary": "Self-hosted AI dashboard for Ollama/local APIs.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["ui", "dashboard"],
+          "recommended": true
+        },
+        {
+          "name": "AnythingLLM",
+          "url": "https://github.com/Mintplex-Labs/anything-llm",
+          "summary": "Private AI workspace and document chat.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["ui", "rag", "workspace"]
+        },
+        {
+          "name": "PrivateGPT",
+          "url": "https://github.com/zylon-ai/private-gpt",
+          "summary": "Private document Q&A reference stack.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["ui", "rag"]
+        },
+        {
+          "name": "LibreChat",
+          "url": "https://github.com/danny-avila/LibreChat",
+          "summary": "Self-hosted multi-provider chat UI.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["ui", "chat"]
+        },
+        {
+          "name": "NextChat",
+          "url": "https://github.com/ChatGPTNextWeb/NextChat",
+          "summary": "Lightweight chat frontend.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["ui", "chat"]
+        },
+        {
+          "name": "Khoj",
+          "url": "https://github.com/khoj-ai/khoj",
+          "summary": "Personal AI and memory system.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["ui", "memory"]
+        }
+      ]
+    },
+    {
+      "id": "rag-data",
+      "name": "RAG, search, memory, and local data",
+      "tools": [
+        {
+          "name": "Chroma",
+          "url": "https://github.com/chroma-core/chroma",
+          "summary": "Local vector database for prototypes.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["rag", "vector-db"],
+          "recommended": true
+        },
+        {
+          "name": "Qdrant",
+          "url": "https://github.com/qdrant/qdrant",
+          "summary": "Production-grade vector database.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["rag", "vector-db"],
+          "recommended": true
+        },
+        {
+          "name": "LanceDB",
+          "url": "https://github.com/lancedb/lancedb",
+          "summary": "Embedded vector database.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["rag", "vector-db", "embedded"]
+        },
+        {
+          "name": "FAISS",
+          "url": "https://github.com/facebookresearch/faiss",
+          "summary": "Low-level vector search library.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["rag", "vector-search"]
+        },
+        {
+          "name": "LlamaIndex",
+          "url": "https://github.com/run-llama/llama_index",
+          "summary": "Data framework for RAG.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["rag", "framework"]
+        },
+        {
+          "name": "LangChain",
+          "url": "https://github.com/langchain-ai/langchain",
+          "summary": "LLM app and agent framework.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["rag", "agents", "framework"]
+        },
+        {
+          "name": "Haystack",
+          "url": "https://github.com/deepset-ai/haystack",
+          "summary": "Production search and RAG pipelines.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["rag", "search"]
+        },
+        {
+          "name": "Sentence Transformers",
+          "url": "https://github.com/UKPLab/sentence-transformers",
+          "summary": "Local embeddings.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["rag", "embeddings"]
+        },
+        {
+          "name": "FastEmbed",
+          "url": "https://github.com/qdrant/fastembed",
+          "summary": "Lightweight embedding library.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["rag", "embeddings"]
+        },
+        {
+          "name": "DuckDB",
+          "url": "https://github.com/duckdb/duckdb",
+          "summary": "Embedded analytics database.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["data", "analytics"]
+        },
+        {
+          "name": "SQLite",
+          "url": "https://sqlite.org/",
+          "summary": "Reliable local app database.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["data", "database"],
+          "recommended": true
+        },
+        {
+          "name": "Tantivy",
+          "url": "https://github.com/quickwit-oss/tantivy",
+          "summary": "Rust full-text search.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["search", "full-text"]
+        },
+        {
+          "name": "Meilisearch",
+          "url": "https://github.com/meilisearch/meilisearch",
+          "summary": "Fast local search engine.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["search"]
+        }
+      ]
+    },
+    {
+      "id": "voice",
+      "name": "Offline voice stack",
+      "tools": [
+        {
+          "name": "whisper.cpp",
+          "url": "https://github.com/ggml-org/whisper.cpp",
+          "summary": "Fast local speech-to-text.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["voice", "stt"],
+          "recommended": true
+        },
+        {
+          "name": "faster-whisper",
+          "url": "https://github.com/SYSTRAN/faster-whisper",
+          "summary": "Fast Whisper transcription using CTranslate2.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["voice", "stt"]
+        },
+        {
+          "name": "Vosk",
+          "url": "https://github.com/alphacep/vosk-api",
+          "summary": "Low-resource offline speech recognition.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["voice", "stt", "edge"],
+          "recommended": true
+        },
+        {
+          "name": "openWakeWord",
+          "url": "https://github.com/dscripka/openWakeWord",
+          "summary": "Local wake-word detection.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["voice", "wake-word"],
+          "recommended": true
+        },
+        {
+          "name": "Piper",
+          "url": "https://github.com/rhasspy/piper",
+          "summary": "Local neural text-to-speech.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["voice", "tts"],
+          "recommended": true
+        },
+        {
+          "name": "eSpeak NG",
+          "url": "https://github.com/espeak-ng/espeak-ng",
+          "summary": "Tiny fallback text-to-speech.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["voice", "tts"]
+        },
+        {
+          "name": "Rhasspy",
+          "url": "https://github.com/rhasspy/rhasspy",
+          "summary": "Offline voice assistant toolkit.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["voice", "assistant"]
+        }
+      ]
+    },
+    {
+      "id": "agents-safety",
+      "name": "Agents and safety gates",
+      "tools": [
+        {
+          "name": "LangGraph",
+          "url": "https://github.com/langchain-ai/langgraph",
+          "summary": "Stateful agent graphs.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["agents"]
+        },
+        {
+          "name": "AutoGen",
+          "url": "https://github.com/microsoft/autogen",
+          "summary": "Multi-agent framework for labs.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["agents"]
+        },
+        {
+          "name": "CrewAI",
+          "url": "https://github.com/crewAIInc/crewAI",
+          "summary": "Multi-agent workflows.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["agents"]
+        },
+        {
+          "name": "Guardrails AI",
+          "url": "https://github.com/guardrails-ai/guardrails",
+          "summary": "Output validation.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["safety", "validation"]
+        },
+        {
+          "name": "NeMo Guardrails",
+          "url": "https://github.com/NVIDIA/NeMo-Guardrails",
+          "summary": "Conversational guardrail patterns.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["safety", "guardrails"]
+        },
+        {
+          "name": "Purple Llama / Llama Guard",
+          "url": "https://github.com/meta-llama/PurpleLlama",
+          "summary": "Safety classifier resources.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["safety", "classifier"]
+        }
+      ]
+    },
+    {
+      "id": "app-stack",
+      "name": "App stack",
+      "tools": [
+        {
+          "name": "FastAPI",
+          "url": "https://github.com/fastapi/fastapi",
+          "summary": "Python local API gateway.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["api", "python"],
+          "recommended": true
+        },
+        {
+          "name": "Uvicorn",
+          "url": "https://github.com/encode/uvicorn",
+          "summary": "ASGI server.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["api", "server"]
+        },
+        {
+          "name": "SQLAlchemy",
+          "url": "https://github.com/sqlalchemy/sqlalchemy",
+          "summary": "Database toolkit.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["database", "python"]
+        },
+        {
+          "name": "Next.js",
+          "url": "https://github.com/vercel/next.js",
+          "summary": "Web app framework.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["web", "frontend"]
+        },
+        {
+          "name": "Tailwind CSS",
+          "url": "https://github.com/tailwindlabs/tailwindcss",
+          "summary": "UI styling.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["web", "css"]
+        },
+        {
+          "name": "shadcn/ui",
+          "url": "https://github.com/shadcn-ui/ui",
+          "summary": "Copyable UI components.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["web", "ui"]
+        },
+        {
+          "name": "HTMX",
+          "url": "https://github.com/bigskysoftware/htmx",
+          "summary": "Lightweight interactive HTML.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["web", "html"]
+        }
+      ]
+    },
+    {
+      "id": "deploy-networking",
+      "name": "Deploy, networking, and sync",
+      "tools": [
+        {
+          "name": "Docker",
+          "url": "https://github.com/docker",
+          "summary": "Container packaging.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["deploy", "containers"],
+          "recommended": true
+        },
+        {
+          "name": "Podman",
+          "url": "https://github.com/containers/podman",
+          "summary": "Rootless container option.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["deploy", "containers"]
+        },
+        {
+          "name": "Caddy",
+          "url": "https://github.com/caddyserver/caddy",
+          "summary": "Simple local reverse proxy.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["networking", "proxy"],
+          "recommended": true
+        },
+        {
+          "name": "Traefik",
+          "url": "https://github.com/traefik/traefik",
+          "summary": "Container-aware proxy.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["networking", "proxy"]
+        },
+        {
+          "name": "WireGuard",
+          "url": "https://www.wireguard.com/",
+          "summary": "Private remote access.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["networking", "vpn"],
+          "recommended": true
+        },
+        {
+          "name": "Headscale",
+          "url": "https://github.com/juanfont/headscale",
+          "summary": "Self-hosted mesh VPN control plane.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["networking", "vpn"]
+        },
+        {
+          "name": "Syncthing",
+          "url": "https://github.com/syncthing/syncthing",
+          "summary": "Peer-to-peer sync.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["sync", "files"]
+        }
+      ]
+    },
+    {
+      "id": "iot-automation",
+      "name": "IoT, Pi, ESP, automation, and LoRa",
+      "tools": [
+        {
+          "name": "Raspberry Pi OS",
+          "url": "https://www.raspberrypi.com/software/",
+          "summary": "Pi base OS.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["raspberry-pi", "os"]
+        },
+        {
+          "name": "Node-RED",
+          "url": "https://github.com/node-red/node-red",
+          "summary": "Visual automation.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["automation", "iot"]
+        },
+        {
+          "name": "Home Assistant",
+          "url": "https://github.com/home-assistant/core",
+          "summary": "Local home/farm automation.",
+          "offline_capable": true,
+          "optional_cloud": true,
+          "tags": ["automation", "iot"]
+        },
+        {
+          "name": "ESPHome",
+          "url": "https://github.com/esphome/esphome",
+          "summary": "ESP device configuration.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["iot", "esp"]
+        },
+        {
+          "name": "PlatformIO",
+          "url": "https://github.com/platformio/platformio-core",
+          "summary": "Embedded dev tooling.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["embedded", "iot"]
+        },
+        {
+          "name": "MicroPython",
+          "url": "https://github.com/micropython/micropython",
+          "summary": "Python on microcontrollers.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["embedded", "python"]
+        },
+        {
+          "name": "Meshtastic",
+          "url": "https://github.com/meshtastic/firmware",
+          "summary": "LoRa mesh communications.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["lora", "mesh"]
+        },
+        {
+          "name": "Mosquitto",
+          "url": "https://github.com/eclipse-mosquitto/mosquitto",
+          "summary": "Local MQTT broker.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["mqtt", "iot"]
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "name": "Security and release checks",
+      "tools": [
+        {
+          "name": "age",
+          "url": "https://github.com/FiloSottile/age",
+          "summary": "Simple file encryption.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["security", "encryption"]
+        },
+        {
+          "name": "SOPS",
+          "url": "https://github.com/getsops/sops",
+          "summary": "Encrypted config/secrets.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["security", "secrets"]
+        },
+        {
+          "name": "libsodium",
+          "url": "https://github.com/jedisct1/libsodium",
+          "summary": "Modern crypto library.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["security", "crypto"]
+        },
+        {
+          "name": "cryptography",
+          "url": "https://github.com/pyca/cryptography",
+          "summary": "Python crypto library.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["security", "crypto", "python"]
+        },
+        {
+          "name": "argon2-cffi",
+          "url": "https://github.com/hynek/argon2-cffi",
+          "summary": "Password hashing / KDF support.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["security", "hashing"]
+        },
+        {
+          "name": "Gitleaks",
+          "url": "https://github.com/gitleaks/gitleaks",
+          "summary": "Secret scanning.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["security", "scanning"],
+          "recommended": true
+        },
+        {
+          "name": "Trivy",
+          "url": "https://github.com/aquasecurity/trivy",
+          "summary": "Container and dependency scanning.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["security", "scanning"],
+          "recommended": true
+        },
+        {
+          "name": "Syft",
+          "url": "https://github.com/anchore/syft",
+          "summary": "SBOM generation.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["security", "sbom"],
+          "recommended": true
+        },
+        {
+          "name": "Grype",
+          "url": "https://github.com/anchore/grype",
+          "summary": "Vulnerability scanning.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["security", "scanning"]
+        },
+        {
+          "name": "Semgrep",
+          "url": "https://github.com/semgrep/semgrep",
+          "summary": "Static analysis.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["security", "sast"]
+        },
+        {
+          "name": "Fail2ban",
+          "url": "https://github.com/fail2ban/fail2ban",
+          "summary": "Host protection.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["security", "host"]
+        }
+      ]
+    },
+    {
+      "id": "monitoring",
+      "name": "Monitoring",
+      "tools": [
+        {
+          "name": "Uptime Kuma",
+          "url": "https://github.com/louislam/uptime-kuma",
+          "summary": "Simple self-hosted uptime dashboard.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["monitoring"]
+        },
+        {
+          "name": "Prometheus",
+          "url": "https://github.com/prometheus/prometheus",
+          "summary": "Metrics collection.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["monitoring", "metrics"]
+        },
+        {
+          "name": "Grafana",
+          "url": "https://github.com/grafana/grafana",
+          "summary": "Dashboards.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["monitoring", "dashboards"]
+        },
+        {
+          "name": "Netdata",
+          "url": "https://github.com/netdata/netdata",
+          "summary": "Real-time system monitoring.",
+          "offline_capable": true,
+          "optional_cloud": false,
+          "tags": ["monitoring"]
+        }
+      ]
+    }
+  ]
+}

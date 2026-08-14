@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: |
+            gateway/requirements.txt
+            gateway/requirements-dev.txt
+      - name: Install gateway dependencies
+        run: python -m pip install -r gateway/requirements.txt -r gateway/requirements-dev.txt
+      - name: Validate catalog
+        run: python scripts/check_catalog.py
+      - name: Compile Python
+        run: python -m compileall -q gateway scripts
+      - name: Lint Python
+        run: python -m ruff check --select E4,E7,E9,F gateway/andromeda_gateway gateway/tests scripts
+      - name: Run gateway tests
+        working-directory: gateway
+        run: python -m pytest -q
+      - name: Validate shell and Compose
+        run: |
+          bash -n scripts/build_offline_bundle.sh
+          docker compose -f examples/guardian_stack/docker-compose.yml config -q
+
+  release-safety:
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Prove ignored runtime files cannot enter the bundle
+        run: |
+          touch gateway/.env gateway/config.yaml gateway/andromeda-events.db
+          bundle_out="$(mktemp -d)"
+          bash scripts/build_offline_bundle.sh "$bundle_out"
+          archive="$(find "$bundle_out" -maxdepth 1 -name '*.tar.gz' -print -quit)"
+          test -n "$archive"
+          if tar -tzf "$archive" | grep -Eq 'gateway/(\.env|config\.yaml|andromeda-events\.db)$'; then
+            echo "Forbidden local state entered the offline bundle" >&2
+            exit 1
+          fi
+          sha256sum -c "$archive.sha256"
+      - name: Scan committed content for secrets
+        run: >-
+          docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:v8.30.1
+          detect --source=/repo --no-banner --redact
+      - name: Generate release SBOM
+        run: |
+          mkdir -p dist
+          docker run --rm -v "$PWD:/repo" anchore/syft:v1.50.0 \
+            dir:/repo -o cyclonedx-json=/repo/dist/sbom.cdx.json
+          test -s dist/sbom.cdx.json
+      - uses: actions/upload-artifact@v7
+        with:
+          name: andromeda-sbom
+          path: dist/sbom.cdx.json
+          if-no-files-found: error

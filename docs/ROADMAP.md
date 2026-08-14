@@ -3,22 +3,23 @@
 ## Phase 0: Repo foundation
 
 - README
-- Tool catalog
+- Tool catalog (`docs/TOOL_CATALOG.md` + `data/tools.json`)
 - Offline-first policy
 - Pi guide
 - LoRa notes
 - Security checklist
-- Docker example
+- Catalog scripts (`scripts/tool_search.py`, `scripts/check_catalog.py`, `scripts/build_offline_bundle.sh`)
+- Docker example (`examples/guardian_stack`)
 
 ## Phase 1: Local gateway
 
-- FastAPI gateway
+- FastAPI gateway (`gateway/`)
 - `/health` endpoint
 - `/api/generate` endpoint
 - Ollama adapter
-- Local config file
+- Local config file (`gateway/config.example.yaml`)
 - SQLite event log
-- Basic tests
+- Basic tests (`gateway/tests`)
 
 ## Phase 2: Voice loop
 

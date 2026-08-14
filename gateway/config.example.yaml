@@ -1,0 +1,18 @@
+# Andromeda local policy gateway example config.
+# Copy to config.yaml and adjust for your host.
+
+host: "127.0.0.1"
+port: 8000
+ollama_base_url: "http://127.0.0.1:11434"
+default_model: "llama3.2:3b"
+allowed_models:
+  - "llama3.2:3b"
+request_timeout_seconds: 120
+sqlite_path: "andromeda-events.db"
+event_log_max_rows: 10000
+max_prompt_chars: 16000
+# Keep false unless you intentionally allow non-local binds.
+allow_non_loopback_bind: false
+# Non-loopback binds also require a 24+ character key. Prefer setting it through
+# the ANDROMEDA_API_KEY environment variable rather than storing it here.
+# api_key: "replace-with-a-long-random-local-key"
