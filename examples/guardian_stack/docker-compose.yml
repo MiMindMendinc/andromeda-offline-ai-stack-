@@ -1,6 +1,6 @@
 # Andromeda Guardian Stack — local offline-first AI demo
 #
-# LAN-only by default. Do not publish these ports to the public internet.
+# Host-only by default. Do not publish these ports to the public internet.
 # Prefer WireGuard or another private VPN for remote admin access.
 #
 # Quick start (from this directory):
@@ -12,12 +12,12 @@ name: andromeda-guardian
 
 services:
   ollama:
-    image: ollama/ollama:latest
+    image: ollama/ollama:0.32.0
     container_name: andromeda-ollama
     restart: unless-stopped
     volumes:
       - ollama_data:/root/.ollama
-    # Bound to localhost only — reach from other LAN hosts via Caddy or WireGuard.
+    # Bound to localhost only. Use WireGuard for deliberate remote access.
     ports:
       - "127.0.0.1:11434:11434"
     networks:
@@ -30,15 +30,15 @@ services:
       start_period: 20s
 
   open-webui:
-    image: ghcr.io/open-webui/open-webui:main
+    image: ghcr.io/open-webui/open-webui:v0.9.0
     container_name: andromeda-open-webui
     restart: unless-stopped
     depends_on:
       ollama:
-        condition: service_started
+        condition: service_healthy
     environment:
       - OLLAMA_BASE_URL=http://ollama:11434
-      - WEBUI_AUTH=false
+      - WEBUI_AUTH=true
       - ENV=prod
     volumes:
       - open_webui_data:/app/backend/data
@@ -48,7 +48,7 @@ services:
       - guardian
 
   qdrant:
-    image: qdrant/qdrant:v1.13.2
+    image: qdrant/qdrant:v1.18.2
     container_name: andromeda-qdrant
     restart: unless-stopped
     volumes:
@@ -59,7 +59,7 @@ services:
       - guardian
 
   caddy:
-    image: caddy:2.9-alpine
+    image: caddy:2.11.4-alpine
     container_name: andromeda-caddy
     restart: unless-stopped
     depends_on:

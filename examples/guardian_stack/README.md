@@ -1,6 +1,7 @@
 # Guardian Stack example
 
-Minimal offline-first compose stack for local chat with Ollama, Open WebUI, Qdrant, and a localhost Caddy proxy.
+Minimal offline-first compose stack for local chat with pinned Ollama, Open WebUI,
+Qdrant, and Caddy images. Every published port is host-only by default.
 
 ## Start
 
@@ -14,7 +15,8 @@ Open the dashboard at `http://localhost:3000` (or `http://localhost:8080` via Ca
 
 ## Security
 
-- Ports bind to `127.0.0.1` only.
+- Ports bind to `127.0.0.1` only; other LAN hosts cannot connect by default.
+- Open WebUI authentication is enabled; the first account created becomes admin.
 - Do not publish Open WebUI or Ollama to the public internet.
 - Use WireGuard (or similar) for remote admin access.
 - Change defaults and enable auth before any shared or multi-user use.

@@ -1,6 +1,7 @@
 # Build artifacts
 dist/
 *.tar.gz
+*.tar.gz.sha256
 
 # Local env / secrets
 .env
@@ -11,6 +12,11 @@ dist/
 gateway/config.yaml
 gateway/andromeda-events.db
 gateway/*.db
+gateway/*.db-*
+gateway/*.sqlite
+gateway/*.sqlite-*
+gateway/*.sqlite3
+gateway/*.sqlite3-*
 
 # Python
 __pycache__/
