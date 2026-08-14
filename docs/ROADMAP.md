@@ -3,12 +3,13 @@
 ## Phase 0: Repo foundation
 
 - README
-- Tool catalog
+- Tool catalog (`docs/TOOL_CATALOG.md` + `data/tools.json`)
 - Offline-first policy
 - Pi guide
 - LoRa notes
 - Security checklist
-- Docker example
+- Catalog scripts (`scripts/tool_search.py`, `scripts/check_catalog.py`, `scripts/build_offline_bundle.sh`)
+- Docker example (`examples/guardian_stack`)
 
 ## Phase 1: Local gateway
 

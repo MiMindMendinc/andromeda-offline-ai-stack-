@@ -1,0 +1,81 @@
+# Andromeda Guardian Stack — local offline-first AI demo
+#
+# LAN-only by default. Do not publish these ports to the public internet.
+# Prefer WireGuard or another private VPN for remote admin access.
+#
+# Quick start (from this directory):
+#   docker compose up -d
+#   docker exec -it andromeda-ollama ollama pull llama3.2:3b
+#   open http://localhost:3000
+
+name: andromeda-guardian
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: andromeda-ollama
+    restart: unless-stopped
+    volumes:
+      - ollama_data:/root/.ollama
+    # Bound to localhost only — reach from other LAN hosts via Caddy or WireGuard.
+    ports:
+      - "127.0.0.1:11434:11434"
+    networks:
+      - guardian
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: andromeda-open-webui
+    restart: unless-stopped
+    depends_on:
+      ollama:
+        condition: service_started
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - WEBUI_AUTH=false
+      - ENV=prod
+    volumes:
+      - open_webui_data:/app/backend/data
+    ports:
+      - "127.0.0.1:3000:8080"
+    networks:
+      - guardian
+
+  qdrant:
+    image: qdrant/qdrant:v1.13.2
+    container_name: andromeda-qdrant
+    restart: unless-stopped
+    volumes:
+      - qdrant_data:/qdrant/storage
+    ports:
+      - "127.0.0.1:6333:6333"
+    networks:
+      - guardian
+
+  caddy:
+    image: caddy:2.9-alpine
+    container_name: andromeda-caddy
+    restart: unless-stopped
+    depends_on:
+      - open-webui
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    networks:
+      - guardian
+
+networks:
+  guardian:
+    driver: bridge
+
+volumes:
+  ollama_data:
+  open_webui_data:
+  qdrant_data:
