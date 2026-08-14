@@ -13,13 +13,13 @@
 
 ## Phase 1: Local gateway
 
-- FastAPI gateway
+- FastAPI gateway (`gateway/`)
 - `/health` endpoint
 - `/api/generate` endpoint
 - Ollama adapter
-- Local config file
+- Local config file (`gateway/config.example.yaml`)
 - SQLite event log
-- Basic tests
+- Basic tests (`gateway/tests`)
 
 ## Phase 2: Voice loop
 

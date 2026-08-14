@@ -27,6 +27,11 @@ copy_if_exists "$ROOT/docs" "$STAGE/docs"
 copy_if_exists "$ROOT/data" "$STAGE/data"
 copy_if_exists "$ROOT/scripts" "$STAGE/scripts"
 copy_if_exists "$ROOT/examples" "$STAGE/examples"
+copy_if_exists "$ROOT/gateway" "$STAGE/gateway"
+
+# Drop local virtualenvs / caches if present in a working tree copy.
+rm -rf "$STAGE/gateway/.venv" "$STAGE/gateway/.pytest_cache" "$STAGE/gateway/**/__pycache__" 2>/dev/null || true
+find "$STAGE/gateway" -type d -name '__pycache__' -prune -exec rm -rf {} + 2>/dev/null || true
 
 cat >"$STAGE/MANIFEST.txt" <<EOF
 Andromeda Offline Bundle
@@ -38,8 +43,9 @@ contents:
   data/
   scripts/
   examples/
+  gateway/
 notes:
-  - This bundle includes documentation, catalog data, helper scripts, and example compose files.
+  - This bundle includes documentation, catalog data, helper scripts, the local gateway, and example compose files.
   - Container images and model weights are NOT included. Pull them on a networked host first, then transfer separately.
   - Review docs/OFFLINE_FIRST_POLICY.md and docs/SECURITY_CHECKLIST.md before deployment.
 EOF

@@ -63,6 +63,22 @@ scripts/tool_search.py
 scripts/check_catalog.py
 scripts/build_offline_bundle.sh
 examples/guardian_stack/docker-compose.yml
+gateway/
+```
+
+## Local gateway
+
+```bash
+cd gateway
+pip install -r requirements.txt
+cp config.example.yaml config.yaml
+python -m andromeda_gateway --config config.yaml
+```
+
+Health check:
+
+```bash
+curl -s http://127.0.0.1:8000/health
 ```
 
 ## Use cases

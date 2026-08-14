@@ -7,11 +7,17 @@ dist/
 .env.*
 !.env.example
 
+# Gateway local state
+gateway/config.yaml
+gateway/andromeda-events.db
+gateway/*.db
+
 # Python
 __pycache__/
 *.py[cod]
 .venv/
 venv/
+.pytest_cache/
 
 # OS / editor
 .DS_Store
