@@ -89,12 +89,13 @@ curl -s http://127.0.0.1:8000/health
 
 ```bash
 bash scripts/build_offline_bundle.sh
-sha256sum -c dist/andromeda-offline-bundle-*.tar.gz.sha256
+cd dist
+sha256sum -c andromeda-offline-bundle-*.tar.gz.sha256
 ```
 
-The builder uses a strict source allowlist: local `.env` files, `config.yaml`,
-SQLite databases, caches, and virtual environments cannot enter the archive.
-Container images and model weights are downloaded separately before disconnecting.
+The builder uses a strict source allowlist: local `.env` files, `config.yaml`, SQLite databases, caches, and virtual environments cannot enter the archive. Container images and model weights are downloaded separately before disconnecting.
+
+The generated `.sha256` file uses the archive basename only so verification works after the files are copied to an air-gapped host.
 
 ## Use cases
 
