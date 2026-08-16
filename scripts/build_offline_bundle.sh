@@ -83,12 +83,17 @@ fi
 
 ARCHIVE="$OUT_DIR/${BUNDLE_NAME}.tar.gz"
 tar -C "$OUT_DIR" -czf "$ARCHIVE" "$BUNDLE_NAME"
+
+# Portable checksum: record basename only so verification works after the
+# archive is moved to an offline host or different directory.
 if command -v sha256sum >/dev/null 2>&1; then
-  sha256sum "$ARCHIVE" >"$ARCHIVE.sha256"
+  (cd "$OUT_DIR" && sha256sum "${BUNDLE_NAME}.tar.gz" > "${BUNDLE_NAME}.tar.gz.sha256")
 else
-  shasum -a 256 "$ARCHIVE" >"$ARCHIVE.sha256"
+  (cd "$OUT_DIR" && shasum -a 256 "${BUNDLE_NAME}.tar.gz" > "${BUNDLE_NAME}.tar.gz.sha256")
 fi
 
 echo "Wrote $ARCHIVE"
-echo "Wrote $ARCHIVE.sha256"
-echo "Transfer both files to the offline host, verify the checksum, then extract the archive."
+echo "Wrote ${OUT_DIR}/${BUNDLE_NAME}.tar.gz.sha256"
+echo "Transfer both files to the offline host, verify with:"
+echo "  sha256sum -c ${BUNDLE_NAME}.tar.gz.sha256"
+echo "then extract the archive."

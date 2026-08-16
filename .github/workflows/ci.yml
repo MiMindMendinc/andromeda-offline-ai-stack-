@@ -62,7 +62,8 @@ jobs:
             echo "Forbidden local state entered the offline bundle" >&2
             exit 1
           fi
-          sha256sum -c "$archive.sha256"
+          # Checksum lists basename only; verify from the directory that holds both files.
+          (cd "$bundle_out" && sha256sum -c "$(basename "$archive").sha256")
       - name: Scan committed content for secrets
         run: >-
           docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:v8.30.1
